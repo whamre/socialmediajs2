@@ -70,13 +70,18 @@ export class AuthService {
                 throw new Error(data.errors?.[0]?.message || 'Login failed');
             }
 
-            // Store the JWT token
+            // Store the JWT token and user data first
             if (data.data?.accessToken) {
                 localStorage.setItem('authToken', data.data.accessToken);
                 localStorage.setItem('userData', JSON.stringify(data.data));
                 
-                // Create API key after successful login
-                await this.createApiKey();
+                // Try to create/get API key - but don't fail login if this fails
+                try {
+                    await this.ensureApiKey();
+                } catch (apiKeyError) {
+                    console.warn('API key creation failed, but login succeeded:', apiKeyError.message);
+                    // Continue with login even if API key fails
+                }
             }
 
             return data;
@@ -86,30 +91,66 @@ export class AuthService {
     }
 
     /**
+     * Ensure user has an API key, create one if needed
+     * @returns {Promise<void>}
+     * @throws {Error} Throws error if API key creation fails
+     */
+    async ensureApiKey() {
+        // Check if we already have an API key
+        const existingApiKey = localStorage.getItem('apiKey');
+        if (existingApiKey) {
+            return; // Already have an API key
+        }
+
+        // Create a new API key
+        await this.createApiKey();
+    }
+
+    /**
      * Create API key for authenticated requests
      * @returns {Promise<void>}
      * @throws {Error} Throws error if API key creation fails
      */
     async createApiKey() {
         try {
+            // Small delay to ensure token is properly set
+            await new Promise(resolve => setTimeout(resolve, 100));
+            
+            const headers = getAuthHeaders();
+            console.log('Creating API key with headers:', headers);
+            
             const response = await fetch(buildApiUrl(API_CONFIG.ENDPOINTS.API_KEY), {
                 method: 'POST',
-                headers: getAuthHeaders()
+                headers: headers,
+                body: JSON.stringify({
+                    name: "Social Media App Key"
+                })
             });
 
             const data = await response.json();
+            console.log('API key response:', response.status, data);
 
             if (!response.ok) {
-                throw new Error(data.errors?.[0]?.message || 'API key creation failed');
+                // More detailed error handling
+                if (response.status === 401) {
+                    throw new Error('Unauthorized - Please login again');
+                } else if (response.status === 500) {
+                    throw new Error('Server error - Please try again later');
+                } else {
+                    throw new Error(data.errors?.[0]?.message || `API key creation failed (${response.status})`);
+                }
             }
 
             // Store the API key
             if (data.data?.key) {
                 localStorage.setItem('apiKey', data.data.key);
+                console.log('API key created and stored successfully');
+            } else {
+                throw new Error('No API key returned from server');
             }
         } catch (error) {
             console.error('API key creation failed:', error.message);
-            // Don't throw here as this shouldn't break the login flow
+            throw error; // Re-throw to be handled by calling function
         }
     }
 
