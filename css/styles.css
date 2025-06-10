@@ -146,83 +146,57 @@ body::before {
 
 /* Auth Page Styling */
 #authPage .card {
-    max-width: 600px;
+    max-width: 500px;
     margin: 60px auto;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
 }
 
-#authPage .card-body {
-    padding: 48px;
+#authPage {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
 }
 
 #authPage .card-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
     background: var(--primary-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 1rem;
-}
-
-#authPage .text-muted {
-    font-size: 1.1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 #authPage h4 {
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 /* Form Elements */
 .form-control, .form-select {
     border: 2px solid #e2e8f0;
     border-radius: var(--radius-md);
-    padding: 16px 20px;
-    font-size: 16px;
+    padding: 12px 16px;
+    font-size: 14px;
     font-weight: 500;
     transition: all 0.3s ease;
     background: var(--surface);
-    height: auto;
 }
 
 .form-control:focus, .form-select:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     outline: none;
-    transform: translateY(-1px);
 }
 
 .form-label {
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 12px;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-}
-
-/* Auth Page Specific Form Improvements */
-#authPage .form-control {
-    padding: 18px 20px;
-    font-size: 16px;
-    border-radius: var(--radius-lg);
-}
-
-#authPage .mb-3, #authPage .mb-4 {
-    margin-bottom: 2rem !important;
-}
-
-#authPage .btn {
-    padding: 18px 24px;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: var(--radius-lg);
+    margin-bottom: 8px;
 }
 
 /* Buttons */
@@ -534,44 +508,15 @@ body::before {
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
-        padding: 0 16px;
+        padding: 0 12px;
     }
     
     .card-body {
-        padding: 32px 24px;
+        padding: 20px;
     }
     
     #authPage .card {
-        margin: 20px auto;
-        max-width: 95%;
-    }
-    
-    #authPage .card-body {
-        padding: 32px 24px;
-    }
-    
-    #authPage .card-title {
-        font-size: 2rem;
-    }
-    
-    #authPage .text-muted {
-        font-size: 1rem;
-        margin-bottom: 2rem;
-    }
-    
-    #authPage h4 {
-        font-size: 1.3rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    #authPage .form-control {
-        padding: 16px 18px;
-        font-size: 16px;
-    }
-    
-    #authPage .btn {
-        padding: 16px 20px;
-        font-size: 15px;
+        margin: 40px auto;
     }
     
     .post-header {
@@ -595,23 +540,8 @@ body::before {
     }
     
     .btn {
-        padding: 12px 18px;
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 480px) {
-    #authPage .card {
-        margin: 10px;
-        max-width: calc(100% - 20px);
-    }
-    
-    #authPage .card-body {
-        padding: 24px 20px;
-    }
-    
-    #authPage .card-title {
-        font-size: 1.8rem;
+        padding: 10px 16px;
+        font-size: 13px;
     }
 }
 
