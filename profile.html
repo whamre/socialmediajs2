@@ -27,11 +27,7 @@
                             <i class="fas fa-home me-1"></i>Home
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="post.html">
-                            <i class="fas fa-plus me-1"></i>Create Post
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link active" href="profile.html">
                             <i class="fas fa-user me-1"></i>Profile
@@ -177,35 +173,95 @@
 
     <!-- Edit Profile Modal -->
     <div id="editProfileModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content edit-profile-modal">
             <div class="modal-header">
-                <h2>Edit Profile</h2>
+                <div class="modal-header-content">
+                    <div class="modal-icon">
+                        <i class="fas fa-user-edit"></i>
+                    </div>
+                    <div>
+                        <h2>Edit Your Profile</h2>
+                        <p class="modal-subtitle">Update your information and personalize your profile</p>
+                    </div>
+                </div>
                 <span class="close-modal" id="closeEditModal">
                     <i class="fas fa-times"></i>
                 </span>
             </div>
             <div class="modal-body">
                 <form id="editProfileForm">
-                    <div class="form-group">
-                        <label for="editBio">Bio</label>
-                        <textarea id="editBio" name="bio" placeholder="Tell us about yourself..." rows="4"></textarea>
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <i class="fas fa-user"></i>
+                            <h3>About You</h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="editBio" class="form-label">
+                                <i class="fas fa-quote-left"></i>
+                                Bio
+                            </label>
+                            <textarea id="editBio" name="bio" class="form-control"
+                                placeholder="Tell us about yourself, your interests, what you do..." rows="4"
+                                maxlength="160"></textarea>
+                            <div class="char-counter">
+                                <span id="bioCharCount">0</span>/160 characters
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="editAvatarUrl">Avatar URL</label>
-                        <input type="url" id="editAvatarUrl" name="avatarUrl"
-                            placeholder="https://example.com/avatar.jpg">
-                    </div>
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <i class="fas fa-images"></i>
+                            <h3>Profile Images</h3>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="editBannerUrl">Banner URL</label>
-                        <input type="url" id="editBannerUrl" name="bannerUrl"
-                            placeholder="https://example.com/banner.jpg">
+                        <div class="form-group">
+                            <label for="editAvatarUrl" class="form-label">
+                                <i class="fas fa-user-circle"></i>
+                                Avatar URL
+                            </label>
+                            <input type="url" id="editAvatarUrl" name="avatarUrl" class="form-control"
+                                placeholder="https://example.com/avatar.jpg">
+                            <div class="form-help">
+                                <i class="fas fa-info-circle"></i>
+                                Upload your image online and paste the URL here
+                            </div>
+                            <div class="avatar-preview" id="avatarPreview">
+                                <img id="avatarPreviewImg" src="" alt="Avatar Preview" style="display: none;">
+                                <div class="preview-placeholder">
+                                    <i class="fas fa-user"></i>
+                                    <span>Avatar Preview</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editBannerUrl" class="form-label">
+                                <i class="fas fa-image"></i>
+                                Banner URL
+                            </label>
+                            <input type="url" id="editBannerUrl" name="bannerUrl" class="form-control"
+                                placeholder="https://example.com/banner.jpg">
+                            <div class="form-help">
+                                <i class="fas fa-info-circle"></i>
+                                Add a banner image to make your profile stand out
+                            </div>
+                            <div class="banner-preview" id="bannerPreview">
+                                <img id="bannerPreviewImg" src="" alt="Banner Preview" style="display: none;">
+                                <div class="preview-placeholder">
+                                    <i class="fas fa-image"></i>
+                                    <span>Banner Preview</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-actions">
-                        <button type="button" class="btn btn-secondary" id="cancelEdit">Cancel</button>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="button" class="btn btn-secondary" id="cancelEdit">
+                            <i class="fas fa-times"></i>
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="saveProfileBtn">
                             <i class="fas fa-save"></i>
                             Save Changes
                         </button>

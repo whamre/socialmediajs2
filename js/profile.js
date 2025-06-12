@@ -402,11 +402,136 @@ class ProfileController {
         const profile = this.currentProfile.data;
         
         // Populate form with current data
-        document.getElementById('editBio').value = profile.bio || '';
-        document.getElementById('editAvatarUrl').value = profile.avatar?.url || '';
-        document.getElementById('editBannerUrl').value = profile.banner?.url || '';
+        const bioField = document.getElementById('editBio');
+        const avatarField = document.getElementById('editAvatarUrl');
+        const bannerField = document.getElementById('editBannerUrl');
+        
+        bioField.value = profile.bio || '';
+        avatarField.value = profile.avatar?.url || '';
+        bannerField.value = profile.banner?.url || '';
+        
+        // Update character counter
+        this.updateCharCounter();
+        
+        // Update image previews
+        this.updateImagePreviews();
+        
+        // Set up event listeners for real-time updates
+        this.setupModalEventListeners();
         
         showModal('editProfileModal');
+    }
+
+    /**
+     * Setup event listeners for the modal
+     */
+    setupModalEventListeners() {
+        const bioField = document.getElementById('editBio');
+        const avatarField = document.getElementById('editAvatarUrl');
+        const bannerField = document.getElementById('editBannerUrl');
+
+        // Character counter
+        bioField.addEventListener('input', () => this.updateCharCounter());
+        
+        // Image previews
+        avatarField.addEventListener('input', () => this.updateAvatarPreview());
+        bannerField.addEventListener('input', () => this.updateBannerPreview());
+    }
+
+    /**
+     * Update character counter for bio
+     */
+    updateCharCounter() {
+        const bioField = document.getElementById('editBio');
+        const counter = document.getElementById('bioCharCount');
+        const length = bioField.value.length;
+        
+        counter.textContent = length;
+        
+        // Change color based on character count
+        if (length > 140) {
+            counter.style.color = '#ef4444';
+        } else if (length > 120) {
+            counter.style.color = '#f59e0b';
+        } else {
+            counter.style.color = 'var(--text-secondary)';
+        }
+    }
+
+    /**
+     * Update image previews
+     */
+    updateImagePreviews() {
+        this.updateAvatarPreview();
+        this.updateBannerPreview();
+    }
+
+    /**
+     * Update avatar preview
+     */
+    updateAvatarPreview() {
+        const avatarField = document.getElementById('editAvatarUrl');
+        const previewImg = document.getElementById('avatarPreviewImg');
+        const placeholder = document.querySelector('#avatarPreview .preview-placeholder');
+        
+        const url = avatarField.value.trim();
+        
+        if (url && this.isValidImageUrl(url)) {
+            previewImg.src = url;
+            previewImg.style.display = 'block';
+            placeholder.style.display = 'none';
+            
+            // Handle image load error
+            previewImg.onerror = () => {
+                previewImg.style.display = 'none';
+                placeholder.style.display = 'flex';
+            };
+        } else {
+            previewImg.style.display = 'none';
+            placeholder.style.display = 'flex';
+        }
+    }
+
+    /**
+     * Update banner preview
+     */
+    updateBannerPreview() {
+        const bannerField = document.getElementById('editBannerUrl');
+        const previewImg = document.getElementById('bannerPreviewImg');
+        const placeholder = document.querySelector('#bannerPreview .preview-placeholder');
+        
+        const url = bannerField.value.trim();
+        
+        if (url && this.isValidImageUrl(url)) {
+            previewImg.src = url;
+            previewImg.style.display = 'block';
+            placeholder.style.display = 'none';
+            
+            // Handle image load error
+            previewImg.onerror = () => {
+                previewImg.style.display = 'none';
+                placeholder.style.display = 'flex';
+            };
+        } else {
+            previewImg.style.display = 'none';
+            placeholder.style.display = 'flex';
+        }
+    }
+
+    /**
+     * Check if URL is a valid image URL
+     */
+    isValidImageUrl(url) {
+        try {
+            const urlObj = new URL(url);
+            return /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(urlObj.pathname) || 
+                   url.includes('imgur.com') || 
+                   url.includes('unsplash.com') ||
+                   url.includes('pexels.com') ||
+                   url.includes('cloudinary.com');
+        } catch {
+            return false;
+        }
     }
 
     /**
