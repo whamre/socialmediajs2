@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post - SocialFlow</title>
+    <meta name="description" content="View and interact with posts on SocialFlow">
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="./css/styles.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌟</text></svg>">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-sparkles me-2"></i>SocialFlow
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="profileLink">
+                            <i class="fas fa-user me-1"></i>Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="exploreLink">
+                            <i class="fas fa-compass me-1"></i>Explore
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item" id="authNav">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-sign-in-alt me-1"></i>Sign In
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" id="logoutNav">
+                        <a class="nav-link" href="#" id="logoutLink">
+                            <i class="fas fa-sign-out-alt me-1"></i>Sign Out
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-3 text-muted">Loading post...</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorMessage" class="d-none">
+            <div class="card text-center">
+                <div class="card-body py-5">
+                    <i class="fas fa-exclamation-triangle text-warning fs-1 mb-3"></i>
+                    <h3>Post Not Found</h3>
+                    <p class="text-muted">The post you're looking for doesn't exist or has been removed.</p>
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="fas fa-home me-2"></i>Back to Feed
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div id="backButton" class="d-none mb-4">
+            <button class="btn btn-outline-secondary" onclick="window.history.back()">
+                <i class="fas fa-arrow-left me-2"></i>Back to Feed
+            </button>
+        </div>
+
+        <!-- Post Content -->
+        <div id="postContainer" class="d-none individual-post">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-11 col-lg-10 col-xl-9">
+                    <!-- Main Post -->
+                    <div id="mainPost" class="card post-card mb-4">
+                        <!-- Post content will be inserted here -->
+                    </div>
+
+                    <!-- Comments Section -->
+                    <div id="commentsSection" class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-comments me-2"></i>Comments
+                                <span id="commentCount" class="text-muted"></span>
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <!-- Add Comment Form (for authenticated users) -->
+                            <div id="addCommentForm" class="d-none mb-4">
+                                <div class="mb-3">
+                                    <textarea class="form-control" id="commentText" rows="3"
+                                        placeholder="Write a comment..." maxlength="280"></textarea>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">
+                                        <span id="commentCharCount">280</span> characters remaining
+                                    </small>
+                                    <button class="btn btn-primary" id="submitComment">
+                                        <i class="fas fa-paper-plane me-2"></i>Post Comment
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Comments List -->
+                            <div id="commentsList">
+                                <!-- Comments will be inserted here -->
+                            </div>
+
+                            <!-- No Comments Message -->
+                            <div id="noComments" class="text-center py-4 text-muted">
+                                <i class="fas fa-comment-slash fs-2 mb-3"></i>
+                                <p>No comments yet. Be the first to share your thoughts!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alerts Container -->
+    <div id="alertsContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 1055;"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="./js/post.js"></script>
+</body>
+
+</html>

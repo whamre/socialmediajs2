@@ -266,7 +266,7 @@ class SocialMediaApp {
      * Create HTML for a single post
      */
     createPostHTML(post) {
-        const { author, created, title, body, tags = [], media, id } = post;
+        const { author, created, title, body, tags = [], media, id, _count } = post;
         const isOwner = this.currentUser && author?.name === this.currentUser.name;
         
         return `
@@ -294,9 +294,9 @@ class SocialMediaApp {
                         ` : ''}
                     </div>
                     
-                    <div class="post-content">
-                        <h5 class="post-title">${title}</h5>
-                        <p class="post-body">${body}</p>
+                    <div class="post-content clickable-post" data-id="${id}" style="cursor: pointer;">
+                        <h5 class="post-title">${title || 'Untitled'}</h5>
+                        <p class="post-body">${truncateText(body || '', 200)}</p>
                         
                         ${media ? `
                             <img src="${media.url}" alt="${media.alt || 'Post media'}" 
@@ -309,6 +309,18 @@ class SocialMediaApp {
                                 ${tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                             </div>
                         ` : ''}
+                        
+                        <div class="post-interaction mt-3 pt-3 border-top">
+                            <div class="row text-muted small">
+                                <div class="col">
+                                    <i class="fas fa-comments me-1"></i>
+                                    ${(_count && _count.comments) || 0} comment${((_count && _count.comments) || 0) !== 1 ? 's' : ''}
+                                </div>
+                                <div class="col text-end">
+                                    <span class="text-primary">Click to view full post <i class="fas fa-arrow-right ms-1"></i></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -321,7 +333,8 @@ class SocialMediaApp {
     attachPostEventListeners() {
         // Edit post buttons
         document.querySelectorAll('.edit-post').forEach(btn => {
-            btn.addEventListener('click', () => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent post click event
                 const postId = btn.dataset.id;
                 this.editPost(postId);
             });
@@ -329,9 +342,18 @@ class SocialMediaApp {
         
         // Delete post buttons
         document.querySelectorAll('.delete-post').forEach(btn => {
-            btn.addEventListener('click', () => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent post click event
                 const postId = btn.dataset.id;
                 this.deletePost(postId);
+            });
+        });
+        
+        // Clickable posts - navigate to individual post page
+        document.querySelectorAll('.clickable-post').forEach(post => {
+            post.addEventListener('click', () => {
+                const postId = post.dataset.id;
+                window.location.href = `post.html?id=${postId}`;
             });
         });
     }

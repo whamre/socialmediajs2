@@ -159,6 +159,7 @@ export function formatDate(dateString) {
  * @returns {string} Truncated text
  */
 export function truncateText(text, maxLength = 150) {
+    if (!text || typeof text !== 'string') return '';
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + '...';
 }
