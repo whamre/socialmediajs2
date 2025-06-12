@@ -114,7 +114,6 @@ class PostPage {
             this.showContent();
             
         } catch (error) {
-            console.error('Failed to load post:', error);
             this.showError('Failed to load post. The post may not exist or you may not have permission to view it.');
         } finally {
             showLoading(false);

@@ -44,7 +44,6 @@ class ProfileController {
             await this.loadProfile();
             
         } catch (error) {
-            console.error('Error initializing profile:', error);
             showMessage('Failed to load profile', 'error');
         }
     }
@@ -130,7 +129,6 @@ class ProfileController {
             await this.loadTabContent(this.currentTab);
 
         } catch (error) {
-            console.error('Error loading profile:', error);
             showMessage('Failed to load profile', 'error');
         } finally {
             document.getElementById('loadingOverlay').style.display = 'none';
@@ -245,7 +243,6 @@ class ProfileController {
                     break;
             }
         } catch (error) {
-            console.error(`Error loading ${tabName}:`, error);
             showMessage(`Failed to load ${tabName}`, 'error');
         }
     }
@@ -282,7 +279,6 @@ class ProfileController {
             });
 
         } catch (error) {
-            console.error('Error loading posts:', error);
             showMessage('Failed to load posts', 'error');
         } finally {
             loading.style.display = 'none';
@@ -312,7 +308,6 @@ class ProfileController {
             container.innerHTML = followers.map(user => this.createUserCard(user)).join('');
 
         } catch (error) {
-            console.error('Error loading followers:', error);
             showMessage('Failed to load followers', 'error');
         } finally {
             loading.style.display = 'none';
@@ -342,7 +337,6 @@ class ProfileController {
             container.innerHTML = following.map(user => this.createUserCard(user)).join('');
 
         } catch (error) {
-            console.error('Error loading following:', error);
             showMessage('Failed to load following', 'error');
         } finally {
             loading.style.display = 'none';
@@ -565,7 +559,6 @@ class ProfileController {
             await this.loadProfile();
             
         } catch (error) {
-            console.error('Error updating profile:', error);
             showMessage(error.message || 'Failed to update profile', 'error');
         }
     }
@@ -582,7 +575,6 @@ class ProfileController {
             await this.loadProfile();
             
         } catch (error) {
-            console.error('Error following user:', error);
             showMessage(error.message || 'Failed to follow user', 'error');
         }
     }
@@ -599,7 +591,6 @@ class ProfileController {
             await this.loadProfile();
             
         } catch (error) {
-            console.error('Error unfollowing user:', error);
             showMessage(error.message || 'Failed to unfollow user', 'error');
         }
     }
@@ -620,7 +611,6 @@ class ProfileController {
             modalBody.innerHTML = this.createPostDetailHTML(post);
             
         } catch (error) {
-            console.error('Error loading post:', error);
             document.getElementById('postModalBody').innerHTML = '<p class="error">Failed to load post</p>';
         }
     }

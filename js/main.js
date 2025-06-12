@@ -91,14 +91,10 @@ class SocialMediaApp {
         
         document.getElementById('profileLink')?.addEventListener('click', (e) => {
             e.preventDefault();
-            console.log('Profile link clicked'); // Debug log
-            console.log('Is authenticated:', this.authService.isAuthenticated()); // Debug log
             
             if (this.authService.isAuthenticated()) {
-                console.log('Navigating to profile page'); // Debug log
                 window.location.href = 'profile.html';
             } else {
-                console.log('User not authenticated'); // Debug log
                 showAlert('Please login to view profiles', 'warning');
             }
         });
@@ -376,8 +372,6 @@ class SocialMediaApp {
      * Show post modal for creating or editing
      */
     showPostModal(post = null) {
-        console.log('Opening post modal...', post); // Debug log
-        
         // Hide any existing loading spinner first
         showLoading(false);
         
@@ -385,7 +379,6 @@ class SocialMediaApp {
         const modalTitle = document.getElementById('postModalTitle');
         
         if (!modalElement) {
-            console.error('Modal element not found!');
             showAlert('Modal not found. Please refresh the page.', 'danger');
             return;
         }
@@ -414,12 +407,10 @@ class SocialMediaApp {
             focus: true
         });
         
-        console.log('Showing modal...'); // Debug log
         modal.show();
         
         // Add event listener for when modal is shown
         modalElement.addEventListener('shown.bs.modal', function () {
-            console.log('Modal is now visible'); // Debug log
             // Focus on the first input
             document.getElementById('postTitle').focus();
         }, { once: true });
