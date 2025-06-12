@@ -5,164 +5,175 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile - Social Media</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html">
-                    <i class="fas fa-home"></i>
-                    SocialApp
-                </a>
-            </div>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link">
-                    <i class="fas fa-home"></i>
-                    Home
-                </a>
-                <a href="post.html" class="nav-link">
-                    <i class="fas fa-plus"></i>
-                    Create Post
-                </a>
-                <a href="profile.html" class="nav-link active">
-                    <i class="fas fa-user"></i>
-                    Profile
-                </a>
-                <button id="logoutBtn" class="nav-link logout-btn">
-                    <i class="fas fa-sign-out-alt"></i>
-                    Logout
-                </button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-share-alt me-2"></i>SocialApp
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="post.html">
+                            <i class="fas fa-plus me-1"></i>Create Post
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="profile.html">
+                            <i class="fas fa-user me-1"></i>Profile
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <button id="logoutBtn" class="nav-link btn btn-link text-white">
+                            <i class="fas fa-sign-out-alt me-1"></i>Logout
+                        </button>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="main-content">
-        <!-- Profile Header -->
-        <section class="profile-header">
-            <div class="profile-banner" id="profileBanner">
-                <img id="bannerImage" src="" alt="Profile Banner" class="banner-image">
-                <button id="editBannerBtn" class="edit-banner-btn" style="display: none;">
-                    <i class="fas fa-camera"></i>
-                </button>
-            </div>
-
-            <div class="profile-info">
-                <div class="profile-avatar-container">
-                    <img id="profileAvatar" src="" alt="Profile Avatar" class="profile-avatar">
-                    <button id="editAvatarBtn" class="edit-avatar-btn" style="display: none;">
+    <div class="container mt-4">
+        <main class="main-content">
+            <!-- Profile Header -->
+            <section class="profile-header">
+                <div class="profile-banner" id="profileBanner">
+                    <img id="bannerImage" src="" alt="Profile Banner" class="banner-image">
+                    <button id="editBannerBtn" class="edit-banner-btn" style="display: none;">
                         <i class="fas fa-camera"></i>
                     </button>
                 </div>
 
-                <div class="profile-details">
-                    <div class="profile-main-info">
-                        <h1 id="profileName" class="profile-name">Loading...</h1>
-                        <p id="profileEmail" class="profile-email">Loading...</p>
-                        <p id="profileBio" class="profile-bio">No bio available</p>
-                    </div>
-
-                    <div class="profile-stats">
-                        <div class="stat">
-                            <span id="postsCount" class="stat-number">0</span>
-                            <span class="stat-label">Posts</span>
-                        </div>
-                        <div class="stat">
-                            <span id="followersCount" class="stat-number">0</span>
-                            <span class="stat-label">Followers</span>
-                        </div>
-                        <div class="stat">
-                            <span id="followingCount" class="stat-number">0</span>
-                            <span class="stat-label">Following</span>
-                        </div>
-                    </div>
-
-                    <div class="profile-actions">
-                        <button id="editProfileBtn" class="btn btn-primary" style="display: none;">
-                            <i class="fas fa-edit"></i>
-                            Edit Profile
-                        </button>
-                        <button id="followBtn" class="btn btn-secondary" style="display: none;">
-                            <i class="fas fa-user-plus"></i>
-                            Follow
-                        </button>
-                        <button id="unfollowBtn" class="btn btn-outline" style="display: none;">
-                            <i class="fas fa-user-minus"></i>
-                            Unfollow
+                <div class="profile-info">
+                    <div class="profile-avatar-container">
+                        <img id="profileAvatar" src="" alt="Profile Avatar" class="profile-avatar">
+                        <button id="editAvatarBtn" class="edit-avatar-btn" style="display: none;">
+                            <i class="fas fa-camera"></i>
                         </button>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Profile Navigation -->
-        <section class="profile-nav">
-            <button class="profile-nav-btn active" data-tab="posts">
-                <i class="fas fa-th-large"></i>
-                Posts
-            </button>
-            <button class="profile-nav-btn" data-tab="followers">
-                <i class="fas fa-users"></i>
-                Followers
-            </button>
-            <button class="profile-nav-btn" data-tab="following">
-                <i class="fas fa-user-friends"></i>
-                Following
-            </button>
-        </section>
+                    <div class="profile-details">
+                        <div class="profile-main-info">
+                            <h1 id="profileName" class="profile-name">Loading...</h1>
+                            <p id="profileEmail" class="profile-email">Loading...</p>
+                            <p id="profileBio" class="profile-bio">No bio available</p>
+                        </div>
 
-        <!-- Profile Content -->
-        <section class="profile-content">
-            <!-- Posts Tab -->
-            <div id="postsTab" class="profile-tab active">
-                <div class="posts-grid" id="userPosts">
-                    <!-- User posts will be loaded here -->
-                </div>
-                <div class="loading" id="postsLoading" style="display: none;">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    Loading posts...
-                </div>
-                <div class="no-posts" id="noPosts" style="display: none;">
-                    <i class="fas fa-image"></i>
-                    <p>No posts yet</p>
-                </div>
-            </div>
+                        <div class="profile-stats">
+                            <div class="stat">
+                                <span id="postsCount" class="stat-number">0</span>
+                                <span class="stat-label">Posts</span>
+                            </div>
+                            <div class="stat">
+                                <span id="followersCount" class="stat-number">0</span>
+                                <span class="stat-label">Followers</span>
+                            </div>
+                            <div class="stat">
+                                <span id="followingCount" class="stat-number">0</span>
+                                <span class="stat-label">Following</span>
+                            </div>
+                        </div>
 
-            <!-- Followers Tab -->
-            <div id="followersTab" class="profile-tab">
-                <div class="users-grid" id="followersList">
-                    <!-- Followers will be loaded here -->
+                        <div class="profile-actions">
+                            <button id="editProfileBtn" class="btn btn-primary" style="display: none;">
+                                <i class="fas fa-edit"></i>
+                                Edit Profile
+                            </button>
+                            <button id="followBtn" class="btn btn-secondary" style="display: none;">
+                                <i class="fas fa-user-plus"></i>
+                                Follow
+                            </button>
+                            <button id="unfollowBtn" class="btn btn-outline" style="display: none;">
+                                <i class="fas fa-user-minus"></i>
+                                Unfollow
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="loading" id="followersLoading" style="display: none;">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    Loading followers...
-                </div>
-                <div class="no-users" id="noFollowers" style="display: none;">
-                    <i class="fas fa-user"></i>
-                    <p>No followers yet</p>
-                </div>
-            </div>
+            </section>
 
-            <!-- Following Tab -->
-            <div id="followingTab" class="profile-tab">
-                <div class="users-grid" id="followingList">
-                    <!-- Following will be loaded here -->
+            <!-- Profile Navigation -->
+            <section class="profile-nav">
+                <button class="profile-nav-btn active" data-tab="posts">
+                    <i class="fas fa-th-large"></i>
+                    Posts
+                </button>
+                <button class="profile-nav-btn" data-tab="followers">
+                    <i class="fas fa-users"></i>
+                    Followers
+                </button>
+                <button class="profile-nav-btn" data-tab="following">
+                    <i class="fas fa-user-friends"></i>
+                    Following
+                </button>
+            </section>
+
+            <!-- Profile Content -->
+            <section class="profile-content">
+                <!-- Posts Tab -->
+                <div id="postsTab" class="profile-tab active">
+                    <div class="posts-grid" id="userPosts">
+                        <!-- User posts will be loaded here -->
+                    </div>
+                    <div class="loading" id="postsLoading" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        Loading posts...
+                    </div>
+                    <div class="no-posts" id="noPosts" style="display: none;">
+                        <i class="fas fa-image"></i>
+                        <p>No posts yet</p>
+                    </div>
                 </div>
-                <div class="loading" id="followingLoading" style="display: none;">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    Loading following...
+
+                <!-- Followers Tab -->
+                <div id="followersTab" class="profile-tab">
+                    <div class="users-grid" id="followersList">
+                        <!-- Followers will be loaded here -->
+                    </div>
+                    <div class="loading" id="followersLoading" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        Loading followers...
+                    </div>
+                    <div class="no-users" id="noFollowers" style="display: none;">
+                        <i class="fas fa-user"></i>
+                        <p>No followers yet</p>
+                    </div>
                 </div>
-                <div class="no-users" id="noFollowing" style="display: none;">
-                    <i class="fas fa-user"></i>
-                    <p>Not following anyone yet</p>
+
+                <!-- Following Tab -->
+                <div id="followingTab" class="profile-tab">
+                    <div class="users-grid" id="followingList">
+                        <!-- Following will be loaded here -->
+                    </div>
+                    <div class="loading" id="followingLoading" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        Loading following...
+                    </div>
+                    <div class="no-users" id="noFollowing" style="display: none;">
+                        <i class="fas fa-user"></i>
+                        <p>Not following anyone yet</p>
+                    </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
+    </div>
 
     <!-- Edit Profile Modal -->
     <div id="editProfileModal" class="modal">
@@ -231,6 +242,7 @@
     </div>
 
     <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="js/profile.js"></script>
 </body>
 
