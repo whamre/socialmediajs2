@@ -89,6 +89,15 @@ class SocialMediaApp {
             this.loadPosts();
         });
         
+        document.getElementById('profileLink')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (this.authService.isAuthenticated()) {
+                window.location.href = 'profile.html';
+            } else {
+                showAlert('Please login to view profiles', 'warning');
+            }
+        });
+        
         // Post actions
         document.getElementById('createPostBtn')?.addEventListener('click', () => {
             this.showPostModal();
