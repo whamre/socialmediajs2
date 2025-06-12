@@ -376,8 +376,19 @@ class SocialMediaApp {
      * Show post modal for creating or editing
      */
     showPostModal(post = null) {
-        const modal = new bootstrap.Modal(document.getElementById('postModal'));
+        console.log('Opening post modal...', post); // Debug log
+        
+        // Hide any existing loading spinner first
+        showLoading(false);
+        
+        const modalElement = document.getElementById('postModal');
         const modalTitle = document.getElementById('postModalTitle');
+        
+        if (!modalElement) {
+            console.error('Modal element not found!');
+            showAlert('Modal not found. Please refresh the page.', 'danger');
+            return;
+        }
         
         if (post) {
             // Edit mode
@@ -396,7 +407,22 @@ class SocialMediaApp {
             this.isEditMode = false;
         }
         
+        // Create and show modal
+        const modal = new bootstrap.Modal(modalElement, {
+            backdrop: true,
+            keyboard: true,
+            focus: true
+        });
+        
+        console.log('Showing modal...'); // Debug log
         modal.show();
+        
+        // Add event listener for when modal is shown
+        modalElement.addEventListener('shown.bs.modal', function () {
+            console.log('Modal is now visible'); // Debug log
+            // Focus on the first input
+            document.getElementById('postTitle').focus();
+        }, { once: true });
     }
     
     /**

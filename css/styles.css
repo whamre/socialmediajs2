@@ -425,6 +425,14 @@ body::before {
     border-width: 4px;
 }
 
+#loadingSpinner {
+    z-index: 999;
+}
+
+#loadingSpinner.d-none {
+    display: none !important;
+}
+
 /* Alerts */
 .alert {
     border: none;
@@ -701,6 +709,35 @@ body::before {
 
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(135deg, #764ba2, #667eea);
+}
+
+/* Bootstrap Modal Fixes */
+.modal-backdrop {
+    z-index: 1040;
+}
+
+.modal {
+    z-index: 1050;
+}
+
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out;
+}
+
+/* Ensure modal elements are clickable */
+.modal-content,
+.modal-header,
+.modal-body,
+.modal-footer,
+.form-control,
+.btn {
+    pointer-events: auto;
+}
+
+/* Fix for unclickable modal */
+body.modal-open {
+    overflow: hidden;
+    padding-right: 0 !important;
 }
 
 /* Custom Modal Styles for Profile Page */
