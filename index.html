@@ -4,35 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Media App</title>
+    <title>SocialFlow - Connect & Share</title>
+    <meta name="description" content="A modern social media platform for sharing thoughts and connecting with others">
+
+    <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="./css/styles.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌟</text></svg>">
 </head>
 
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-share-alt me-2"></i>SocialApp</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-sparkles me-2"></i>SocialFlow
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#" id="homeLink"><i class="fas fa-home me-1"></i>Home</a>
+                        <a class="nav-link active" href="#" id="homeLink">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" id="profileLink"><i class="fas fa-user me-1"></i>Profile</a>
+                        <a class="nav-link" href="#" id="profileLink">
+                            <i class="fas fa-user me-1"></i>Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="exploreLink">
+                            <i class="fas fa-compass me-1"></i>Explore
+                        </a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item" id="authNav">
-                        <a class="nav-link" href="#" id="loginLink"><i class="fas fa-sign-in-alt me-1"></i>Login</a>
+                        <a class="nav-link" href="#" id="loginLink">
+                            <i class="fas fa-sign-in-alt me-1"></i>Sign In
+                        </a>
                     </li>
                     <li class="nav-item d-none" id="logoutNav">
-                        <a class="nav-link" href="#" id="logoutLink"><i class="fas fa-sign-out-alt me-1"></i>Logout</a>
+                        <a class="nav-link" href="#" id="logoutLink">
+                            <i class="fas fa-sign-out-alt me-1"></i>Sign Out
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -42,63 +65,95 @@
     <!-- Main Content -->
     <div class="container mt-4">
         <!-- Loading Spinner -->
-        <div id="loadingSpinner" class="text-center d-none">
+        <div id="loadingSpinner" class="text-center d-none py-5">
             <div class="spinner-border text-primary" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
+            <p class="mt-3 text-muted">Loading amazing content...</p>
         </div>
 
         <!-- Login/Register Page -->
         <div id="authPage" class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
-                <div class="card shadow">
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-8">
+                <div class="card shadow-lg">
                     <div class="card-body">
-                        <h2 class="card-title text-center mb-4">Welcome</h2>
+                        <div class="text-center mb-4">
+                            <i class="fas fa-sparkles text-primary fs-1 mb-3"></i>
+                            <h2 class="card-title">Welcome to SocialFlow</h2>
+                            <p class="text-muted">Connect, share, and discover amazing content</p>
+                        </div>
 
                         <!-- Login Form -->
                         <div id="loginForm">
-                            <h4 class="mb-3">Login</h4>
+                            <h4 class="mb-4 text-center">Sign In</h4>
                             <form id="loginFormElement">
                                 <div class="mb-3">
-                                    <label for="loginEmail" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="loginEmail" required>
+                                    <label for="loginEmail" class="form-label">
+                                        <i class="fas fa-envelope me-2"></i>Email Address
+                                    </label>
+                                    <input type="email" class="form-control" id="loginEmail" required
+                                        placeholder="your.email@noroff.no">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="loginPassword" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="loginPassword" required>
+                                <div class="mb-4">
+                                    <label for="loginPassword" class="form-label">
+                                        <i class="fas fa-lock me-2"></i>Password
+                                    </label>
+                                    <input type="password" class="form-control" id="loginPassword" required
+                                        placeholder="Enter your password">
                                 </div>
-                                <button type="submit" class="btn btn-primary w-100">Login</button>
+                                <button type="submit" class="btn btn-primary w-100 py-3">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                                </button>
                             </form>
-                            <p class="text-center mt-3">
-                                Don't have an account?
-                                <a href="#" id="showRegister">Register here</a>
-                            </p>
+                            <div class="text-center mt-4">
+                                <p class="text-muted mb-2">New to SocialFlow?</p>
+                                <a href="#" id="showRegister" class="text-decoration-none fw-semibold">
+                                    Create your account <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
                         </div>
 
                         <!-- Register Form -->
                         <div id="registerForm" class="d-none">
-                            <h4 class="mb-3">Register</h4>
+                            <h4 class="mb-4 text-center">Create Account</h4>
                             <form id="registerFormElement">
                                 <div class="mb-3">
-                                    <label for="registerName" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="registerName" required>
+                                    <label for="registerName" class="form-label">
+                                        <i class="fas fa-user me-2"></i>Full Name
+                                    </label>
+                                    <input type="text" class="form-control" id="registerName" required
+                                        placeholder="Your full name">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="registerEmail" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="registerEmail" required>
-                                    <small class="form-text text-muted">Must be @noroff.no or @stud.noroff.no</small>
+                                    <label for="registerEmail" class="form-label">
+                                        <i class="fas fa-envelope me-2"></i>Email Address
+                                    </label>
+                                    <input type="email" class="form-control" id="registerEmail" required
+                                        placeholder="your.email@noroff.no">
+                                    <small class="form-text text-muted mt-1">
+                                        <i class="fas fa-info-circle me-1"></i>Must be @noroff.no or @stud.noroff.no
+                                    </small>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="registerPassword" class="form-label">Password</label>
+                                <div class="mb-4">
+                                    <label for="registerPassword" class="form-label">
+                                        <i class="fas fa-lock me-2"></i>Password
+                                    </label>
                                     <input type="password" class="form-control" id="registerPassword" required
-                                        minlength="8">
+                                        minlength="8" placeholder="Create a strong password">
+                                    <small class="form-text text-muted mt-1">
+                                        <i class="fas fa-shield-alt me-1"></i>Minimum 8 characters
+                                    </small>
                                 </div>
-                                <button type="submit" class="btn btn-success w-100">Register</button>
+                                <button type="submit" class="btn btn-success w-100 py-3">
+                                    <i class="fas fa-user-plus me-2"></i>Create Account
+                                </button>
                             </form>
-                            <p class="text-center mt-3">
-                                Already have an account?
-                                <a href="#" id="showLogin">Login here</a>
-                            </p>
+                            <div class="text-center mt-4">
+                                <p class="text-muted mb-2">Already have an account?</p>
+                                <a href="#" id="showLogin" class="text-decoration-none fw-semibold">
+                                    Sign in here <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,29 +162,71 @@
 
         <!-- Main App Page -->
         <div id="mainPage" class="d-none">
+            <!-- Welcome Header -->
+            <div class="text-center mb-4">
+                <h1 class="display-6 fw-bold mb-2">Welcome to your feed</h1>
+                <p class="text-muted">Share your thoughts and discover what others are saying</p>
+            </div>
+
             <!-- Search and Filter -->
-            <div class="card mb-4">
+            <div class="card search-filter-section">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-lg-5">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="searchInput" placeholder="Search posts...">
+                                <span class="input-group-text bg-transparent border-end-0">
+                                    <i class="fas fa-search text-muted"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0 ps-0" id="searchInput"
+                                    placeholder="Search posts and discover content...">
                                 <button class="btn btn-outline-secondary" type="button" id="searchBtn">
                                     <i class="fas fa-search"></i>
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-lg-3">
                             <select class="form-select" id="filterSelect">
-                                <option value="">All Posts</option>
-                                <option value="my">My Posts</option>
-                                <option value="following">Following</option>
+                                <option value="">🌟 All Posts</option>
+                                <option value="my">📝 My Posts</option>
+                                <option value="following">👥 Following</option>
+                                <option value="trending">🔥 Trending</option>
                             </select>
                         </div>
-                        <div class="col-md-3">
-                            <button class="btn btn-primary" id="createPostBtn">
-                                <i class="fas fa-plus me-1"></i>New Post
+                        <div class="col-lg-4">
+                            <button class="btn btn-primary w-100" id="createPostBtn">
+                                <i class="fas fa-plus me-2"></i>Share Something Amazing
                             </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Cards Row (Optional Enhancement) -->
+            <div class="row g-3 mb-4 d-none" id="statsRow">
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-body py-3">
+                            <i class="fas fa-heart text-danger fs-4 mb-2"></i>
+                            <h6 class="card-title mb-1">Likes Received</h6>
+                            <p class="card-text text-muted mb-0" id="likesCount">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-body py-3">
+                            <i class="fas fa-share text-info fs-4 mb-2"></i>
+                            <h6 class="card-title mb-1">Posts Shared</h6>
+                            <p class="card-text text-muted mb-0" id="postsCount">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-body py-3">
+                            <i class="fas fa-users text-success fs-4 mb-2"></i>
+                            <h6 class="card-title mb-1">Connections</h6>
+                            <p class="card-text text-muted mb-0" id="connectionsCount">0</p>
                         </div>
                     </div>
                 </div>
@@ -139,39 +236,73 @@
             <div id="postsFeed">
                 <!-- Posts will be dynamically loaded here -->
             </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state d-none">
+                <i class="fas fa-comments"></i>
+                <h3>No posts yet</h3>
+                <p>Be the first to share something amazing!</p>
+                <button class="btn btn-primary mt-3" onclick="document.getElementById('createPostBtn').click()">
+                    <i class="fas fa-plus me-2"></i>Create First Post
+                </button>
+            </div>
         </div>
 
         <!-- Create/Edit Post Modal -->
-        <div class="modal fade" id="postModal" tabindex="-1">
-            <div class="modal-dialog">
+        <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="postModalTitle">Create Post</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <h5 class="modal-title" id="postModalTitle">
+                            <i class="fas fa-edit me-2"></i>Share Your Thoughts
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form id="postForm">
-                            <div class="mb-3">
-                                <label for="postTitle" class="form-label">Title</label>
-                                <input type="text" class="form-control" id="postTitle" required>
+                            <div class="mb-4">
+                                <label for="postTitle" class="form-label fw-semibold">
+                                    <i class="fas fa-heading me-2"></i>Post Title
+                                </label>
+                                <input type="text" class="form-control" id="postTitle" required
+                                    placeholder="What's on your mind?">
+                            </div>
+                            <div class="mb-4">
+                                <label for="postBody" class="form-label fw-semibold">
+                                    <i class="fas fa-paragraph me-2"></i>Content
+                                </label>
+                                <textarea class="form-control" id="postBody" rows="5" required
+                                    placeholder="Share your story, thoughts, or ideas..."></textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label for="postTags" class="form-label fw-semibold">
+                                    <i class="fas fa-tags me-2"></i>Tags
+                                </label>
+                                <input type="text" class="form-control" id="postTags"
+                                    placeholder="programming, lifestyle, thoughts (comma separated)">
+                                <small class="form-text text-muted">
+                                    <i class="fas fa-lightbulb me-1"></i>Add tags to help others discover your content
+                                </small>
                             </div>
                             <div class="mb-3">
-                                <label for="postBody" class="form-label">Content</label>
-                                <textarea class="form-control" id="postBody" rows="4" required></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="postTags" class="form-label">Tags (comma separated)</label>
-                                <input type="text" class="form-control" id="postTags" placeholder="tag1, tag2, tag3">
-                            </div>
-                            <div class="mb-3">
-                                <label for="postMedia" class="form-label">Media URL (optional)</label>
-                                <input type="url" class="form-control" id="postMedia">
+                                <label for="postMedia" class="form-label fw-semibold">
+                                    <i class="fas fa-image me-2"></i>Media URL
+                                </label>
+                                <input type="url" class="form-control" id="postMedia"
+                                    placeholder="https://example.com/image.jpg (optional)">
+                                <small class="form-text text-muted">
+                                    <i class="fas fa-info-circle me-1"></i>Add an image to make your post more engaging
+                                </small>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary" id="savePostBtn">Save Post</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="fas fa-times me-2"></i>Cancel
+                        </button>
+                        <button type="button" class="btn btn-primary" id="savePostBtn">
+                            <i class="fas fa-paper-plane me-2"></i>Publish Post
+                        </button>
                     </div>
                 </div>
             </div>
@@ -181,6 +312,7 @@
     <!-- Alert Container -->
     <div id="alertContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 1055;"></div>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="./js/main.js"></script>
 </body>
