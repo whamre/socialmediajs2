@@ -159,6 +159,7 @@ export function formatDate(dateString) {
  * @returns {string} Truncated text
  */
 export function truncateText(text, maxLength = 150) {
+    if (!text || typeof text !== 'string') return '';
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + '...';
 }
@@ -179,4 +180,55 @@ export function debounce(func, wait) {
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
     };
+}
+
+/**
+ * Show modal by ID
+ * @param {string} modalId - Modal element ID
+ */
+export function showModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.add('show');
+        document.body.classList.add('modal-open');
+    }
+}
+
+/**
+ * Hide modal by ID
+ * @param {string} modalId - Modal element ID
+ */
+export function hideModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'none';
+        modal.classList.remove('show');
+        document.body.classList.remove('modal-open');
+    }
+}
+
+/**
+ * Show message (alias for showAlert for compatibility)
+ * @param {string} message - Message text
+ * @param {string} type - Message type (success, error, warning, info)
+ * @param {number} duration - Duration in milliseconds
+ */
+export function showMessage(message, type = 'info', duration = 5000) {
+    // Convert error type to Bootstrap danger type
+    const alertType = type === 'error' ? 'danger' : type;
+    showAlert(message, alertType, duration);
+}
+
+/**
+ * Escape HTML to prevent XSS attacks
+ * @param {string} text - Text to escape
+ * @returns {string} Escaped text
+ */
+export function escapeHtml(text) {
+    if (typeof text !== 'string') return '';
+    
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
 } 

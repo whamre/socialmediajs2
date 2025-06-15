@@ -23,9 +23,8 @@ export class AuthService {
      *         email: "john.doe@stud.noroff.no",
      *         password: "securePassword123"
      *     });
-     *     console.log('Registration successful:', result);
      * } catch (error) {
-     *     console.error('Registration failed:', error.message);
+     *     // Handle error appropriately
      * }
      */
     async register({ name, email, password }) {
@@ -149,8 +148,7 @@ export class AuthService {
                 throw new Error('No API key returned from server');
             }
         } catch (error) {
-            console.error('API key creation failed:', error.message);
-            throw error; // Re-throw to be handled by calling function
+            // Don't throw here as this shouldn't break the login flow
         }
     }
 
